@@ -14,11 +14,13 @@ someone double-clicks `site/index.html`**, as well as on GitHub Pages and a cust
    python3 scripts/check_site.py
    ```
 
-5. Commit, push the branch and open a pull request into `main`. CI runs the same check.
-6. After review, squash-merge. The branch is deleted after merge.
+5. Commit, push the branch and open a pull request into `main`. CI runs the same check, and the
+   pull request can't be merged until it passes. (Direct pushes to `main` are blocked.)
+6. After review, squash-merge. GitHub deletes the branch automatically.
 7. When `main` is ready to go live, run the **Publish site** workflow (see [README](README.md#publishing-an-update)).
 
-Only `main` and `gh-pages` are long-lived branches. Never push to `gh-pages` by hand.
+Only `main` and `gh-pages` are long-lived branches. Never push to `gh-pages` by hand; it's blocked
+from force-pushes and deletion, and should only ever change through the publish step.
 
 ## Rules of the road
 

@@ -18,8 +18,14 @@ software is needed, and it works offline.
 | `main`     | Latest development version. All changes land here via pull request.    |
 | `gh-pages` | What GitHub Pages serves. Generated from `main`'s `site/` folder — never edit it directly. |
 
-Short-lived feature branches are fine for pull requests, but they are deleted after merge, so the
-repo only ever has these two long-lived branches.
+Both branches are protected by repository rulesets:
+
+- `main` can only change through a pull request, and the **Check site** CI job must pass first.
+  Nobody (admins included) can push to it directly, force-push or delete it.
+- `gh-pages` can't be force-pushed or deleted. It's only updated by the publish step below.
+
+Short-lived feature branches are fine for pull requests. GitHub deletes them automatically on
+merge, so the repo only ever has these two long-lived branches.
 
 ```
 site/        the website (this folder becomes the root of gh-pages)
