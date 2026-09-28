@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 scripts/check_site.py)"
+    ],
+    "ask": [
+      "Bash(scripts/publish.sh:*)",
+      "Bash(git push:*)"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Local-only Claude Code settings
+.claude/settings.local.json
+CLAUDE.local.md
+
+# Python cache from scripts/
+__pycache__/
