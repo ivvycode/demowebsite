@@ -1,138 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ACME Venue — Events, Conferences &amp; Celebrations</title>
-  <meta name="description" content="ACME Venue is a fictional events venue used to demonstrate product features.">
-  <link rel="stylesheet" href="assets/css/styles.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>iVvy Venues — Meeting and event spaces</title>
+<link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="#/" aria-label="iVvy Venues home"><img src="assets/img/logo.png" alt="iVvy"><span>Venues</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#/" data-route="home">Home</a>
+      <a href="#/asia-pacific" data-route="asia-pacific">Asia Pacific</a>
+      <a href="#/europe" data-route="europe">Europe</a>
+      <a href="#/north-america" data-route="north-america">North America</a>
+    </nav>
+  </div>
+</header>
+<main id="main" tabindex="-1"></main>
+<footer class="site-footer">
+  <div class="container">
+    <img src="assets/img/logo.png" alt="iVvy">
+    <nav aria-label="Footer"><a href="#/asia-pacific">Asia Pacific</a><a href="#/europe">Europe</a><a href="#/north-america">North America</a></nav>
+    <span>© 2026 iVvy. All rights reserved.</span>
+  </div>
+</footer>
+<div class="toast" role="status" aria-live="polite" id="toast"></div>
 
-  <header class="site-header">
-    <div class="container">
-      <a class="brand" href="index.html">AC<span>ME</span></a>
-      <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false">Menu</button>
-      <nav class="site-nav" id="site-nav" aria-label="Main">
-        <ul>
-          <li><a href="index.html" aria-current="page">Home</a></li>
-          <li><a href="space.html">The Space</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main id="main">
-    <section class="hero">
-      <div class="container">
-        <span class="eyebrow">Events · Conferences · Celebrations</span>
-        <h1>A space made for<br>unforgettable events.</h1>
-        <p>From intimate board meetings to 600-guest gala dinners, ACME Venue brings flexible spaces, in-house catering and a dedicated events team under one roof.</p>
-        <div class="actions">
-          <a class="btn" href="contact.html">Make an enquiry</a>
-          <a class="btn btn--ghost" href="space.html">Explore the space</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">Our spaces</span>
-          <h2>Rooms for every occasion</h2>
-          <p class="lead">Four distinct spaces that can be booked individually or combined for larger events.</p>
-        </div>
-        <div class="grid grid--3">
-          <article class="card">
-            <div class="visual visual--ballroom" role="img" aria-label="Grand Ballroom"></div>
-            <div class="card__body">
-              <h3>Grand Ballroom</h3>
-              <p>Soaring ceilings, a sprung dance floor and built-in AV for galas, awards nights and weddings.</p>
-            </div>
-            <div class="card__meta"><span>Up to 600 guests</span><span>820 m²</span></div>
-          </article>
-          <article class="card">
-            <div class="visual visual--terrace" role="img" aria-label="Garden Terrace"></div>
-            <div class="card__body">
-              <h3>Garden Terrace</h3>
-              <p>An open-air terrace overlooking the lake — perfect for cocktail parties and ceremonies.</p>
-            </div>
-            <div class="card__meta"><span>Up to 250 guests</span><span>400 m²</span></div>
-          </article>
-          <article class="card">
-            <div class="visual visual--boardroom" role="img" aria-label="Executive Boardroom"></div>
-            <div class="card__body">
-              <h3>Executive Boardroom</h3>
-              <p>A private, quiet room with video conferencing for leadership meetings and interviews.</p>
-            </div>
-            <div class="card__meta"><span>Up to 20 guests</span><span>60 m²</span></div>
-          </article>
-        </div>
-        <p style="margin-top: 32px;"><a href="space.html">See all spaces and capacities →</a></p>
-      </div>
-    </section>
-
-    <section class="section section--dark">
-      <div class="container">
-        <div class="stats">
-          <div><span class="stat__num">4</span><span class="stat__label">Flexible event spaces</span></div>
-          <div><span class="stat__num">600</span><span class="stat__label">Guest banquet capacity</span></div>
-          <div><span class="stat__num">1,200+</span><span class="stat__label">Events hosted each year</span></div>
-          <div><span class="stat__num">4.9★</span><span class="stat__label">Average client rating</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--alt" id="testimonials">
-      <div class="container">
-        <div class="section-head section-head--center">
-          <span class="eyebrow">Testimonials</span>
-          <h2>What our clients say</h2>
-        </div>
-        <div class="grid grid--3">
-          <blockquote class="quote">
-            <p>“The team handled every detail of our annual conference. Registration, catering and AV ran without a hitch.”</p>
-            <footer>— Event Manager, Example Corp</footer>
-          </blockquote>
-          <blockquote class="quote">
-            <p>“Our wedding on the Garden Terrace was magical. Guests are still talking about the food.”</p>
-            <footer>— Sam &amp; Alex</footer>
-          </blockquote>
-          <blockquote class="quote">
-            <p>“From enquiry to invoice, booking with ACME was the easiest part of planning our awards night.”</p>
-            <footer>— Marketing Director, Sample Industries</footer>
-          </blockquote>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta">
-      <div class="container">
-        <h2>Planning an event?</h2>
-        <p>Tell us about your date and guest numbers and our events team will be in touch.</p>
-        <a class="btn" href="contact.html">Check availability</a>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container">
-      <a class="brand" href="index.html">AC<span>ME</span></a>
-      <nav aria-label="Footer">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="space.html">The Space</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-      <p class="disclaimer">© <span data-year>2026</span> ACME Venue. A fictional venue for product demonstration purposes only.</p>
-    </div>
-  </footer>
-
-  <script src="assets/js/main.js"></script>
+<script src="assets/js/main.js"></script>
 </body>
 </html>
