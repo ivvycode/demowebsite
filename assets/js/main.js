@@ -62,6 +62,14 @@ const REGIONS = {
     ]
   }
 };
+/* ───────── Enquiry widgets ─────────
+   One iVvy enquiry widget per region; mounted into the contact section by mountWidget(). */
+const WIDGETS = {
+  "asia-pacific":  {src:"https://www.ivvy.com.au/scripts/enquiry-widget/wdg.js", region:"ap-southeast-2", id:"E025E7F9D0848F5"},
+  "europe":        {src:"https://www.ivvy.co.uk/scripts/enquiry-widget/wdg.js", region:"eu-west-2",      id:"114ED6A44E387A6"},
+  "north-america": {src:"https://www.ivvy.com/scripts/enquiry-widget/wdg.js",    region:"us-west-2",      id:"3D0C8252F1794E4"}
+};
+
 const ORDER = ["asia-pacific","europe","north-america"];
 
 /* ───────── Icons ───────── */
@@ -166,20 +174,7 @@ function regionPage(key){
           <div>${I.clock}<span>${esc(R.hours)}</span></div>
         </div>
       </div>
-      <div class="form-card" id="formCard">
-        <form id="enquiry" novalidate>
-          <div class="form-grid">
-            <div class="field"><label for="f-name">Full name</label><input id="f-name" name="name" autocomplete="name" required><span class="err"></span></div>
-            <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required><span class="err"></span></div>
-            <div class="field"><label for="f-phone">Phone <small>(optional)</small></label><input id="f-phone" name="phone" type="tel" autocomplete="tel"></div>
-            <div class="field"><label for="f-space">Space <small>(optional)</small></label><select id="f-space" name="space"><option value="">Not sure yet</option>${R.spaces.map(s=>`<option>${esc(s[0])}</option>`).join("")}</select></div>
-            <div class="field"><label for="f-date">Event date</label><input id="f-date" name="date" type="date"></div>
-            <div class="field"><label for="f-guests">Number of guests</label><input id="f-guests" name="guests" type="number" min="1" inputmode="numeric"></div>
-            <div class="field full"><label for="f-msg">Tell us about your event</label><textarea id="f-msg" name="message"></textarea></div>
-          </div>
-          <button class="btn btn-primary" type="submit">Send enquiry</button>
-        </form>
-      </div>
+      <div class="form-card widget-card" id="formCard"></div>
     </div>
   </section>
 
@@ -222,23 +217,23 @@ function route(){
   route.ran=true;
   if(key!=="home"){ renderSpaces(key,""); bindRegion(key); }
 }
+function mountWidget(key){
+  const W=WIDGETS[key], card=document.getElementById("formCard");
+  if(!W||!card) return;
+  const box="widget-container-"+W.id;
+  card.innerHTML=`<div id="${box}"></div>`;
+  const sc=document.createElement("script");
+  sc.src=W.src; sc.async=true;
+  sc.dataset.region=W.region; sc.dataset.widgetId=W.id; sc.dataset.container=box;
+  sc.onerror=()=>{card.innerHTML='<p class="widget-fallback">The enquiry form could not be loaded. Please check your internet connection and try again.</p>';};
+  card.appendChild(sc);
+}
 function bindRegion(key){
   const grid=document.getElementById("spaceGrid"), arrows=main.querySelectorAll(".arrow");
   const upd=()=>{arrows[0].disabled=grid.scrollLeft<4; arrows[1].disabled=grid.scrollLeft+grid.clientWidth>=grid.scrollWidth-4;};
   arrows.forEach(b=>b.addEventListener("click",()=>{const card=grid.querySelector(".space"); const step=(card?card.offsetWidth+20:300)*2; grid.scrollBy({left:step*+b.dataset.dir,behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});}));
   grid.addEventListener("scroll",upd,{passive:true}); window.addEventListener("resize",upd); upd();
-  document.getElementById("enquiry").addEventListener("submit",e=>{
-    e.preventDefault(); let ok=true, firstBad=null;
-    const check=(id,test,msg)=>{const f=document.getElementById(id), wrap=f.closest(".field"), er=wrap.querySelector(".err");
-      const bad=!test(f.value.trim()); wrap.classList.toggle("invalid",bad); er.textContent=bad?msg:""; f.setAttribute("aria-invalid",bad);
-      if(bad){ok=false; firstBad=firstBad||f;}};
-    check("f-name",v=>v.length>1,"Enter your name.");
-    check("f-email",v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),"Enter an email address like name@company.com.");
-    if(!ok){firstBad.focus();return;}
-    const name=document.getElementById("f-name").value.trim().split(" ")[0];
-    document.getElementById("formCard").innerHTML=`<div class="form-done" tabindex="-1"><div class="tick">${I.check}</div><h3>Enquiry sent</h3><p>Thanks, ${esc(name)}. Our events team will be in touch soon.</p></div>`;
-    document.querySelector(".form-done").focus();
-  });
+  mountWidget(key);
 }
 main.addEventListener("click",e=>{
   const cta=e.target.closest("[data-cta]");

@@ -183,3 +183,6 @@ img{max-width:100%;display:block}
 .skip{position:absolute;left:-999px;top:8px;background:#fff;color:var(--ivvy-dark-green);padding:8px 14px;z-index:99;border-radius:6px}
 .skip:focus{left:8px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.widget-card{min-height:200px}
+.widget-fallback{text-align:center;color:var(--text);padding:24px 0}
