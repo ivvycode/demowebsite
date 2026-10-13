@@ -1,7 +1,9 @@
 # demowebsite
 
-A simple static website for a fictional events venue (**ACME Venue**), used by the iVvy sales team
-to demo product features.
+A simple static website for a fictional hotel group, **iVvy Venues**, used by the iVvy sales team
+to demo iVvy products in a realistic venue site. It has a home page and a page for each region
+(Asia Pacific, Europe, North America), each with its spaces, an iVvy enquiry widget and links to
+that region's iVvy booking engine and meeting booker.
 
 - **Live:** https://ivvycode.github.io/demowebsite/
 - **Tech:** plain HTML, CSS and JavaScript. No build step, no dependencies.
@@ -9,7 +11,8 @@ to demo product features.
 ## View it locally
 
 Open `site/index.html` in any web browser (double-click it). That's it — no server or other
-software is needed, and it works offline.
+software is needed. The site works offline; only the enquiry widget and booking links need an
+internet connection.
 
 ## How the repo works
 
@@ -38,6 +41,9 @@ AGENTS.md    instructions for AI coding agents (CLAUDE.md points to it)
 
 See [CONTRIBUTING.md](CONTRIBUTING.md). In short: branch from `main`, edit files in `site/`,
 run `python3 scripts/check_site.py`, open a pull request.
+
+Most content (regions, spaces, photos, contact details, booking links and enquiry widgets) is in
+the data constants at the top of `site/assets/js/main.js`; see [AGENTS.md](AGENTS.md#data-constants-in-mainjs).
 
 ## Publishing an update
 
