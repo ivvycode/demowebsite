@@ -1,9 +1,9 @@
 /* ───────── Edit your links here ─────────
-   Replace "#" with each hotel's booking engine and meeting booker URLs. */
+   Each region's booking engine and meeting booker URLs. Use "#" to disable a button. */
 const LINKS = {
-  "asia-pacific":  { bookingEngine: "#", meetingBooker: "#" },
-  "europe":        { bookingEngine: "#", meetingBooker: "#" },
-  "north-america": { bookingEngine: "#", meetingBooker: "#" }
+  "asia-pacific":  { bookingEngine: "https://www.ivvy.com.au/VM-29923-1325-8002779", meetingBooker: "https://www.ivvy.com.au/VM-29923-1492-3203346" },
+  "europe":        { bookingEngine: "https://www.ivvy.co.uk/VM-20-213-2347025",     meetingBooker: "https://www.ivvy.co.uk/VM-20-124-3350000" },
+  "north-america": { bookingEngine: "https://www.ivvy.com/VM-244-266-8183370",      meetingBooker: "https://www.ivvy.com/VM-244-388-2074948" }
 };
 
 /* ───────── Photos ─────────
@@ -189,7 +189,7 @@ function regionPage(key){
       <div class="book-block book-block--vip">
         <div class="icon">${I.star}</div>
         <h2>VIP exclusive</h2>
-        <p>As a VIP client, you can use our meeting booker to check availability, choose your space and confirm meetings online, any time, with no back-and-forth.</p>
+        <p>As one of our valued clients, you can self-book meetings online by checking availability, selecting your preferred function space and packages, and confirming your booking at any time.</p>
         <a class="btn btn-outline" href="${esc(L.meetingBooker)}" data-cta="meeting booker" target="_blank" rel="noopener">Open meeting booker</a>
       </div>
     </div>
