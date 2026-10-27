@@ -171,11 +171,31 @@ img{max-width:100%;display:block}
 .book-block{border-radius:12px;padding:40px;display:flex;flex-direction:column;gap:14px;background:var(--card);border:1px solid var(--border)}
 .book-block h2{font-size:clamp(24px,2.8vw,32px);font-weight:600}
 .book-block p{max-width:46ch}
-.book-block .btn{align-self:flex-start;margin-top:auto}
+.book-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:auto;padding-top:6px}
 .book-block .icon{width:52px;height:52px;border-radius:10px;display:grid;place-items:center;background:var(--ivvy-green-light);color:var(--ivvy-dark-green)}
 .book-block--vip{background:var(--well)}
 .book-block--vip .icon{background:var(--ivvy-dark-green);color:var(--ivvy-green-mid)}
 @media (max-width:900px){.book{grid-template-columns:1fr}.book-block{padding:28px}}
+
+/* "Book instantly" availability section */
+.availability{display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center}
+.availability h2{font-size:clamp(26px,3.4vw,38px);font-weight:600}
+.availability .copy p{margin-top:12px;max-width:46ch}
+.availability .ivvy-button{margin-top:28px}
+.availability-calendar{display:block;border:none;width:300px;height:480px;max-width:100%;border-radius:var(--ivvy-radius-card);box-shadow:0 4px 24px rgba(15,51,31,.08);background:var(--ivvy-white)}
+@media (max-width:768px){.availability{grid-template-columns:1fr;gap:28px}.availability-calendar{margin:0 auto}}
+
+/* iVvy "Check Availability" button (iVvy's own embed styles, kept as supplied) */
+.ivvy-button{display:inline-block;padding:6px 12px 6px 80px;margin-bottom:0;font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:normal;line-height:1.42857143;text-align:left;text-decoration:none;white-space:nowrap;vertical-align:middle;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-image:none;border:1px solid transparent;border-radius:3px;-webkit-box-shadow:0px 3px 0px rgba(50, 50, 50, 0.22);-moz-box-shadow:0px 3px 0px rgba(50, 50, 50, 0.22);box-shadow:0px 3px 0px rgba(50, 50, 50, 0.22)}
+.ivvy-button.round{padding:6px 22px 6px 80px;border-radius:33px}
+.ivvy-button.round0{border-radius:0px}
+.ivvy-button:hover{opacity:0.9;text-decoration:none}
+.ivvy-button:before{content:' ';position:absolute;width:67px;height:34px;margin-left:-74px;background:#000;opacity:0.11;display:inline-block;border-radius:3px}
+.ivvy-button.round:before{border-radius:33px}
+.ivvy-button-logo{display:block;position:absolute;width:47px;height:20px;margin-left:-63px;margin-top:6px;background-position:0 0;background-repeat:no-repeat}
+.ivvy-button span{display:block;font-weight:bold;font-size:18px;color:#fff;line-height:1}
+.ivvy-button span.ivvy-button-text{font-weight:normal;font-size:12px;padding-top:3px}
+.ivvy-button span.ivvy-button-heading{text-transform:uppercase}
 
 /* footer */
 .site-footer{background:var(--ivvy-dark-green);border-top:1px solid var(--border);padding:48px 0;font-size:14px}

@@ -7,8 +7,9 @@ Humans: see [README.md](README.md) and [CONTRIBUTING.md](CONTRIBUTING.md).
 
 A small **static demo website** for a fictional hotel group, **iVvy Venues**, with venues in three
 regions: Asia Pacific, Europe and North America. The iVvy sales team uses it to demo iVvy
-products embedded in a realistic venue site: each region page links to that region's iVvy
-booking engine and meeting booker and embeds its iVvy enquiry widget. It is hosted on GitHub Pages
+products embedded in a realistic venue site: each region page embeds that region's iVvy
+enquiry widget and availability calendar, and links to its iVvy booking engine forms, group
+booking engines and meeting booker. It is hosted on GitHub Pages
 from the `gh-pages` branch.
 
 ## Hard constraints — do not break these
@@ -16,8 +17,9 @@ from the `gh-pages` branch.
 1. **No build step, no dependencies.** Plain HTML, CSS and vanilla JavaScript only. No npm,
    bundlers, frameworks, static-site generators, TypeScript, Sass or CDN-hosted libraries/fonts.
    A salesperson must be able to double-click `site/index.html` and have it work, offline.
-   The only remote resources are the iVvy products being demoed (the enquiry widget scripts and
-   the booking links); the rest of the site must still render without them.
+   The only remote resources are the iVvy products being demoed (the enquiry widget scripts, the
+   availability calendar iframe, the Check Availability button logo and the booking links); the
+   rest of the site must still render without them.
 2. **Relative paths only.** The same files must work unchanged at:
    - `file:///…/site/index.html` (opened from disk)
    - `https://ivvycode.github.io/demowebsite/` (project sub-path)
@@ -69,14 +71,22 @@ to home.
 
 A region page has, in order: hero → **Spaces** (horizontal scroller of space cards) →
 **Contact our events team** (phone, hours and the iVvy enquiry widget) → **Book instantly**
-(booking engine button) and **VIP exclusive** (meeting booker button).
+(`#book`: iVvy's Check Availability button, which opens a 300×480 popup, and the embedded
+availability calendar iframe) → the **booking cards** (`#booking-options`: the five
+`BOOKING_CARDS`, two per row).
 
 ### Data constants in `main.js`
 
 Edit content here rather than in the HTML templates.
 
-- `LINKS` — per region `{ bookingEngine, meetingBooker }` URLs for the two booking buttons.
-  A value of `"#"` disables that button: clicking it shows a toast asking for the link.
+- `LINKS` — per region iVvy URLs: `availability.popup` (Check Availability popup),
+  `availability.calendar` (embedded calendar), `standardForm` / `customForm` (`simple` and
+  `detailed` booking engine forms), `standardGroup` / `customGroup` (group booking engines) and
+  `meetingBooker`. A value of `"#"` disables a card button: clicking it shows a toast asking for
+  the link.
+- `BOOKING_CARDS` — the booking cards shown on every region page: `icon` (a key of `I`),
+  `title`, `text`, optional `vip`, and `ctas` as `[label, L => url]` pairs that pick a URL from
+  the region's `LINKS`. The first CTA is a primary button, any second one an outline button.
 - `IMG` — photo key → `assets/img/…` path (numbered photos plus `home-hero`, `conference`, `tent`).
 - `PHOTOS` — per region, space name → `IMG[…]`. Names must match `REGIONS[…].spaces` exactly;
   a space with no photo shows its kind's icon as a placeholder.
@@ -92,7 +102,7 @@ Edit content here rather than in the HTML templates.
 - `ORDER` — the order regions appear in on the home page.
 - `I` — inline SVG icons.
 
-To **add a region**: add the same key to `LINKS`, `PHOTOS`, `HOME_PHOTOS`, `HERO_PHOTOS`,
+To **add a region**: add the same key (with every `LINKS` field) to `LINKS`, `PHOTOS`, `HOME_PHOTOS`, `HERO_PHOTOS`,
 `REGIONS`, `WIDGETS` and `ORDER`, then add a link to both the header nav (with `data-route`) and
 the footer nav in `index.html`.
 
@@ -114,7 +124,9 @@ All styles are in `assets/css/styles.css` and follow the iVvy brand. Use the cus
   (`--page`, `--card`, `--heading`, `--text`, `--border`, …), so components pick up the right
   colours automatically; `.form-card` switches back to light tokens for a white card on green.
   When adding or reordering sections, keep the alternation (e.g. a region page goes hero (green)
-  → Spaces (white) → Contact (green) → Booking (white)).
+  → Spaces (white) → Contact (green) → Book instantly (white) → booking cards (green)).
+- The Check Availability button uses iVvy's own embed styles (`.ivvy-button…` in `styles.css`,
+  Arial and `#00baf2`), kept as iVvy supplies them; don't restyle it to the site brand.
 - Prefer existing classes (`section`, `section--alt`, `container`, `section-head`, `btn
   btn-primary` / `btn-outline`, `form-card`, `book-block`, …) over new ones.
 - Radii and widths: `--ivvy-container` 1200px, `--ivvy-radius-card` 10px, `--ivvy-radius-btn` 6px.
@@ -138,5 +150,6 @@ python3 scripts/check_site.py
 ```
 
 It must print `Site check passed.` Then open `site/index.html` from disk and click through home and
-each region page, including at a narrow (mobile) width. If you changed `LINKS`, check each region's
-**Visit our booking engine** and **Open meeting booker** buttons point to the right URLs.
+each region page, including at a narrow (mobile) width. If you changed `LINKS` or
+`BOOKING_CARDS`, check that each region's Check Availability button, availability calendar and
+booking card buttons point to the right URLs.
