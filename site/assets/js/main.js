@@ -42,12 +42,12 @@ const LINKS = {
 /* ───────── Booking cards ─────────
    Shown two per row under "Book instantly" on every region page. Each CTA's link picks a URL from LINKS. */
 const BOOKING_CARDS = [
-  {icon:"form", title:"Standard booking engine form",
+  {icon:"form", title:"Standard booking engine",
    text:"Capture bookings directly in iVvy. Let guests book online through an easy booking experience.",
-   ctas:[["View simple form", L=>L.standardForm.simple], ["View detailed form", L=>L.standardForm.detailed]]},
-  {icon:"brush", title:"Custom booking engine form",
+   ctas:[["View simple engine", L=>L.standardForm.simple], ["View detailed engine", L=>L.standardForm.detailed]]},
+  {icon:"brush", title:"Custom booking engine",
    text:"Deliver a booking experience that feels like an extension of your brand. With dedicated booking pages, capture direct bookings through iVvy.",
-   ctas:[["View simple form", L=>L.customForm.simple], ["View detailed form", L=>L.customForm.detailed]]},
+   ctas:[["View simple engine", L=>L.customForm.simple], ["View detailed engine", L=>L.customForm.detailed]]},
   {icon:"bolt", title:"Standard group booking engine",
    text:"See live room availability and rates of iVvy Venues portfolio, choose your dates and confirm your stay in a few clicks.",
    ctas:[["Visit group booking engine", L=>L.standardGroup]]},
