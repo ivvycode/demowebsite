@@ -1,10 +1,63 @@
 /* ───────── Edit your links here ─────────
-   Each region's booking engine and meeting booker URLs. Use "#" to disable a button. */
+   Each region's iVvy booking URLs. Use "#" to disable a button.
+   availability: popup = "Check Availability" button, calendar = embedded availability calendar.
+   standardForm / customForm: simple (enquiry) and detailed booking engine forms.
+   standardGroup / customGroup: group booking engines. meetingBooker: VIP meeting booker. */
 const LINKS = {
-  "asia-pacific":  { bookingEngine: "https://www.ivvy.com.au/VM-29923-1325-8002779", meetingBooker: "https://www.ivvy.com.au/VM-29923-1492-3203346" },
-  "europe":        { bookingEngine: "https://www.ivvy.co.uk/VM-20-213-2347025",     meetingBooker: "https://www.ivvy.co.uk/VM-20-124-3350000" },
-  "north-america": { bookingEngine: "https://www.ivvy.com/VM-244-266-8183370",      meetingBooker: "https://www.ivvy.com/VM-244-388-2074948" }
+  "asia-pacific": {
+    availability:  { popup: "https://www.ivvy.com.au/VM-29923-1325-8002779/item/calendar?v=4602447d2d43a461a20b8ceac0cd3591",
+                     calendar: "https://www.ivvy.com.au/VM-29923-2187-1124451/item/calendar?v=4602447d2d43a461a20b8ceac0cd3591" },
+    standardForm:  { simple: "https://www.ivvy.com.au/VM-29923-1325-8002779/order/start?v=4602447d2d43a461a20b8ceac0cd3591&type=enquire",
+                     detailed: "https://www.ivvy.com.au/VM-29923-1325-8002779/order/start?v=4602447d2d43a461a20b8ceac0cd3591" },
+    customForm:    { simple: "https://www.ivvy.com.au/VM-29923-2187-1124451/order/start?v=4602447d2d43a461a20b8ceac0cd3591&type=enquire",
+                     detailed: "https://www.ivvy.com.au/VM-29923-2187-1124451/order/start?v=4602447d2d43a461a20b8ceac0cd3591" },
+    standardGroup: "https://www.ivvy.com.au/VM-29923-1325-8002779",
+    customGroup:   "https://www.ivvy.com.au/VM-29923-2187-1124451",
+    meetingBooker: "https://www.ivvy.com.au/VM-29923-1492-3203346"
+  },
+  "europe": {
+    availability:  { popup: "https://www.ivvy.co.uk/VM-20-130-1250451/item/calendar?v=24fd540ea15b4e5b1b08df56f2216f57",
+                     calendar: "https://www.ivvy.co.uk/VM-20-213-2347025/item/calendar?v=24fd540ea15b4e5b1b08df56f2216f57" },
+    standardForm:  { simple: "https://www.ivvy.co.uk/VM-20-130-1250451/order/start?v=24fd540ea15b4e5b1b08df56f2216f57&type=enquire",
+                     detailed: "https://www.ivvy.co.uk/VM-20-130-1250451/order/start?v=24fd540ea15b4e5b1b08df56f2216f57" },
+    customForm:    { simple: "https://www.ivvy.co.uk/VM-20-213-2347025/order/start?v=24fd540ea15b4e5b1b08df56f2216f57&type=enquire",
+                     detailed: "https://www.ivvy.co.uk/VM-20-213-2347025/order/start?v=24fd540ea15b4e5b1b08df56f2216f57" },
+    standardGroup: "https://www.ivvy.co.uk/VM-20-130-1250451",
+    customGroup:   "https://www.ivvy.co.uk/VM-20-213-2347025",
+    meetingBooker: "https://www.ivvy.co.uk/VM-20-124-3350000"
+  },
+  "north-america": {
+    availability:  { popup: "https://www.ivvy.com/VM-244-266-8183370/item/calendar?v=f8d4ed36c3e880a40ac597aa73525366",
+                     calendar: "https://www.ivvy.com/VM-244-389-4961315/item/calendar?v=f8d4ed36c3e880a40ac597aa73525366" },
+    standardForm:  { simple: "https://www.ivvy.com/VM-244-266-8183370/order/start?v=f8d4ed36c3e880a40ac597aa73525366&type=enquire",
+                     detailed: "https://www.ivvy.com/VM-244-266-8183370/order/start?v=f8d4ed36c3e880a40ac597aa73525366" },
+    customForm:    { simple: "https://www.ivvy.com/VM-244-389-4961315/order/start?v=f8d4ed36c3e880a40ac597aa73525366&type=enquire",
+                     detailed: "https://www.ivvy.com/VM-244-389-4961315/order/start?v=f8d4ed36c3e880a40ac597aa73525366" },
+    standardGroup: "https://www.ivvy.com/VM-244-266-8183370",
+    customGroup:   "https://www.ivvy.com/VM-244-389-4961315",
+    meetingBooker: "https://www.ivvy.com/VM-244-388-2074948"
+  }
 };
+
+/* ───────── Booking cards ─────────
+   Shown two per row under "Book instantly" on every region page. Each CTA's link picks a URL from LINKS. */
+const BOOKING_CARDS = [
+  {icon:"form", title:"Standard booking engine form",
+   text:"Capture bookings directly in iVvy. Let guests book online through an easy booking experience.",
+   ctas:[["View simple form", L=>L.standardForm.simple], ["View detailed form", L=>L.standardForm.detailed]]},
+  {icon:"brush", title:"Custom booking engine form",
+   text:"Deliver a booking experience that feels like an extension of your brand. With dedicated booking pages, capture direct bookings through iVvy.",
+   ctas:[["View simple form", L=>L.customForm.simple], ["View detailed form", L=>L.customForm.detailed]]},
+  {icon:"bolt", title:"Standard group booking engine",
+   text:"See live room availability and rates of iVvy Venues portfolio, choose your dates and confirm your stay in a few clicks.",
+   ctas:[["Visit group booking engine", L=>L.standardGroup]]},
+  {icon:"building", title:"Custom group booking engine",
+   text:"With your branding and dedicated booking pages, showcase live room availability and rates of your portfolio. Guests can choose dates and book instantly in a few clicks.",
+   ctas:[["Visit group booking engine", L=>L.customGroup]]},
+  {icon:"star", title:"VIP exclusive", vip:true,
+   text:"As one of our valued clients, you can self-book meetings online by checking availability, selecting your preferred function space and packages, and confirming your booking at any time.",
+   ctas:[["Open meeting booker", L=>L.meetingBooker]]}
+];
 
 /* ───────── Photos ─────────
    Photos are embedded once in IMG and assigned to spaces by exact name below.
@@ -80,6 +133,9 @@ const I = {
   dining:   sv('<path d="M8 2h8l-1 7a3 3 0 0 1-6 0z"/><path d="M12 12v8"/><path d="M8 21h8"/>',24,1.3),
   outdoor:  sv('<path d="M12 3a9 9 0 0 0-9 9h18a9 9 0 0 0-9-9z"/><path d="M12 12v9"/><path d="M8 21h8"/>',24,1.3),
   bolt:     sv('<path d="M13 2 3 14h9l-1 8 10-12h-9z"/>',26),
+  form:     sv('<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/>',26),
+  brush:    sv('<path d="M12 21a9 9 0 1 1 9-9c0 2-1.5 3-3 3h-2a2 2 0 0 0-1 3.7c.6.4.8 1.2.4 1.8-.6.3-1.6.5-3.4.5z"/><circle cx="7.5" cy="11" r="1"/><circle cx="11" cy="7.5" r="1"/><circle cx="15.5" cy="8.5" r="1"/>',26),
+  building: sv('<path d="M4 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"/><path d="M16 9h2a2 2 0 0 1 2 2v10"/><path d="M8 7h4M8 11h4M8 15h4"/><path d="M2 21h20"/>',26),
   star:     sv('<path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/>',26),
   check:    sv('<path d="M20 6 9 17l-5-5"/>',18,2.5),
   phone:    sv('<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/>',18),
@@ -178,20 +234,28 @@ function regionPage(key){
     </div>
   </section>
 
-  <section class="section">
-    <div class="container book">
-      <div class="book-block">
-        <div class="icon">${I.bolt}</div>
+  <section class="section" id="book">
+    <div class="container availability">
+      <div class="copy">
         <h2>Book instantly</h2>
         <p>See live room availability and rates at ${esc(R.hotel)}, choose your dates and confirm your stay in a few clicks.</p>
-        <a class="btn btn-primary" href="${esc(L.bookingEngine)}" data-cta="booking engine" target="_blank" rel="noopener">Visit our booking engine</a>
+        <a class="ivvy-button" href="${esc(L.availability.popup)}" data-popup target="_blank" rel="noopener noreferrer" style="background:#00baf2;border:1px solid #00baf2;"><span class="ivvy-button-logo" style="background-image:url('${esc(new URL(L.availability.popup).origin)}/images/ivvy-button-logo.png')"></span>
+          <span class="ivvy-button-heading">Check Availability</span>
+          <span class="ivvy-button-text">Book Now, Pay Later</span>
+        </a>
       </div>
-      <div class="book-block book-block--vip">
-        <div class="icon">${I.star}</div>
-        <h2>VIP exclusive</h2>
-        <p>As one of our valued clients, you can self-book meetings online by checking availability, selecting your preferred function space and packages, and confirming your booking at any time.</p>
-        <a class="btn btn-outline" href="${esc(L.meetingBooker)}" data-cta="meeting booker" target="_blank" rel="noopener">Open meeting booker</a>
-      </div>
+      <iframe class="availability-calendar" src="${esc(L.availability.calendar)}" title="Room availability calendar for ${esc(R.hotel)}" loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="booking-options">
+    <div class="container book">${BOOKING_CARDS.map(c=>`
+      <div class="book-block${c.vip?" book-block--vip":""}">
+        <div class="icon">${I[c.icon]}</div>
+        <h2>${esc(c.title)}</h2>
+        <p>${esc(c.text)}</p>
+        <div class="book-actions">${c.ctas.map(([label,url],i)=>`<a class="btn ${i?"btn-outline":"btn-primary"}" href="${esc(url(L))}" data-cta="${esc(c.title.toLowerCase())}" target="_blank" rel="noopener">${esc(label)}</a>`).join("")}</div>
+      </div>`).join("")}
     </div>
   </section>`;
 }
@@ -236,6 +300,8 @@ function bindRegion(key){
   mountWidget(key);
 }
 main.addEventListener("click",e=>{
+  const pop=e.target.closest("[data-popup]");
+  if(pop){ if(window.open(pop.href,"iVvy","directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=300,height=480,top=60,left=60")) e.preventDefault(); return; }
   const cta=e.target.closest("[data-cta]");
   if(cta && cta.getAttribute("href")==="#"){e.preventDefault();toast(`Add the ${cta.dataset.cta} link in LINKS to enable this button.`);return;}
   const a=e.target.closest('a[href^="#"]:not([href^="#/"])');
